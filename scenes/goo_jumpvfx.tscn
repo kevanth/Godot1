@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct0uxno6iot2r"]
+
+[ext_resource type="Script" path="res://scripts/States/goo/jumpAttack.gd" id="1_k5dt3"]
+[ext_resource type="Texture2D" uid="uid://cqbxlh0pkglr5" path="res://characters/goo/goo_landfx.png" id="2_uel1d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lnsk6"]
+radius = 8.39035
+height = 30.1703
+
+[sub_resource type="Animation" id="Animation_0eshf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_b4rm6"]
+resource_name = "jumpfx"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbrpl"]
+_data = {
+"RESET": SubResource("Animation_0eshf"),
+"jumpfx": SubResource("Animation_b4rm6")
+}
+
+[node name="jumpAttack" type="Area2D"]
+script = ExtResource("1_k5dt3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-0.943656, 8.02229)
+texture = ExtResource("2_uel1d")
+hframes = 5
+region_rect = Rect2(0, 0, 224, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.607803, 6.4509)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lnsk6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tbrpl")
+}
