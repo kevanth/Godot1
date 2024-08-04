@@ -48,14 +48,14 @@ _data = {
 script = ExtResource("1_k5dt3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(-0.943656, 8.02229)
+z_index = 6
+position = Vector2(0.056344, 0.0563936)
 texture = ExtResource("2_uel1d")
 hframes = 5
 region_rect = Rect2(0, 0, 224, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.607803, 6.4509)
+position = Vector2(-0.22945, 1.86336)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lnsk6")
 

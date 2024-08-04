@@ -13,14 +13,17 @@ var dash_direction: Vector2 = Vector2.ZERO
 
 func enter():
 	character.animationStateMachine.travel("walk")
+	character.body.isTargetable = false
 	
 	dashing = true
 	dash_time_left = dashDuration
 	dash_direction = character.body.velocity.normalized()
 	
 	addDashVfx()
-		
 	return self
+	
+func exit():
+	character.body.isTargetable = true
 	
 func addDashVfx():
 	var shadowNode = shadowScene.instantiate()

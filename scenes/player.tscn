@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dipuoujg0a0xp"]
+[gd_scene load_steps=46 format=3 uid="uid://dipuoujg0a0xp"]
 
 [ext_resource type="Script" path="res://scripts/States/player/player.gd" id="1_u01ny"]
 [ext_resource type="Script" path="res://scripts/States/State Machine.gd" id="2_ani1l"]
@@ -8,7 +8,8 @@
 [ext_resource type="Script" path="res://scripts/States/player/PlayerWalk.gd" id="5_fnowg"]
 [ext_resource type="Script" path="res://scripts/States/player/PlayerDash.gd" id="6_t847h"]
 [ext_resource type="Script" path="res://scripts/States/player/PlayerAttack1.gd" id="7_dkwhp"]
-[ext_resource type="Script" path="res://scripts/States/player/healthBar.gd" id="9_uxjv2"]
+[ext_resource type="PackedScene" uid="uid://r4iirevdiy4p" path="res://scenes/dash_vfx.tscn" id="8_x4a22"]
+[ext_resource type="Script" path="res://scenes/BasicAttack.gd" id="10_wecm6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iugsi"]
 radius = 6.0
@@ -31,7 +32,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5x8gd"]
 resource_name = "attack1"
-length = 0.2
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,7 +40,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [34, 35]
@@ -455,14 +456,13 @@ _bundled = {
 script = ExtResource("1_u01ny")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.02223, -1)
 scale = Vector2(1.00202, 1)
 texture = ExtResource("2_rv3pn")
+offset = Vector2(-1.99597, -1)
 hframes = 8
 vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.02223, -1)
 shape = SubResource("CapsuleShape2D_iugsi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -476,7 +476,7 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("2_ani1l")
-init_state = NodePath("PlayerWalk")
+init_state = NodePath("BasicAttack")
 
 [node name="PlayerIdle" type="Node" parent="State Machine"]
 script = ExtResource("4_h0cpe")
@@ -494,19 +494,9 @@ shadowScene = SubResource("PackedScene_bwmv3")
 
 [node name="PlayerAttack1" type="Node" parent="State Machine"]
 script = ExtResource("7_dkwhp")
+shadowScene = ExtResource("8_x4a22")
 hitBox = ExtResource("2_iac3j")
 
-[node name="HealthBar" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -32.0
-offset_top = 21.0
-offset_right = -28.0
-offset_bottom = 48.0
-script = ExtResource("9_uxjv2")
-
-[node name="ProgressBar" type="ProgressBar" parent="HealthBar"]
-z_index = 5
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
+[node name="BasicAttack" type="Node" parent="State Machine"]
+script = ExtResource("10_wecm6")
+hitBox = ExtResource("2_iac3j")

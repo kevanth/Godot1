@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://bh6wy3rx600yw"]
+[gd_scene load_steps=18 format=3 uid="uid://bh6wy3rx600yw"]
 
 [ext_resource type="Script" path="res://scripts/States/goo/goo.gd" id="1_pw4m8"]
-[ext_resource type="Script" path="res://scripts/States/State Machine.gd" id="2_1dxpt"]
 [ext_resource type="PackedScene" uid="uid://ct0uxno6iot2r" path="res://scenes/goo_jumpvfx.tscn" id="2_x4cjh"]
 [ext_resource type="Texture2D" uid="uid://ditqb5s6fe7du" path="res://characters/goo/goo.png" id="3_lmtlq"]
 [ext_resource type="Script" path="res://scripts/States/goo/GooIdle.gd" id="3_rwny8"]
+[ext_resource type="Script" path="res://scripts/States/Goo State Machine.gd" id="3_yrhk6"]
 [ext_resource type="Script" path="res://scripts/States/goo/GooJump.gd" id="5_3wdhk"]
 [ext_resource type="Script" path="res://scripts/States/goo/GooAttack.gd" id="5_cibto"]
-[ext_resource type="Script" path="res://scripts/States/goo/healthBar.gd" id="8_e13d4"]
+[ext_resource type="Script" path="res://scripts/States/goo/GooDead.gd" id="7_muw0d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6kvnh"]
 radius = 7.0
@@ -27,10 +27,28 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_y1a0v"]
+resource_name = "dead"
+length = 0.9
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 6, 7]
+}
+
 [sub_resource type="Animation" id="Animation_5jlcw"]
 resource_name = "idle"
 length = 0.6
 loop_mode = 1
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,12 +59,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [15, 16]
 }
 
 [sub_resource type="Animation" id="Animation_yk50c"]
 resource_name = "jump"
-length = 0.1
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -54,14 +72,30 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [2]
+"values": [2, 4]
 }
 
-[sub_resource type="Animation" id="Animation_nhmxd"]
-resource_name = "jump_transition"
+[sub_resource type="Animation" id="Animation_hj3mb"]
+resource_name = "jumpCharge"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ru1l6"]
+resource_name = "takeDamage"
 length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -73,18 +107,29 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iup3o"]
 _data = {
 "RESET": SubResource("Animation_mgnap"),
+"dead": SubResource("Animation_y1a0v"),
 "idle": SubResource("Animation_5jlcw"),
 "jump": SubResource("Animation_yk50c"),
-"jump_transition": SubResource("Animation_nhmxd")
+"jumpCharge": SubResource("Animation_hj3mb"),
+"takeDamage": SubResource("Animation_ru1l6")
 }
 
+[sub_resource type="GDScript" id="GDScript_fue5d"]
+script/source = "extends Control
+
+func update_health(current_health: int, max_health: int):
+	$ProgressBar.max_value = max_health
+	$ProgressBar.value = current_health
+"
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(1.34755, 0.0499115)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_pw4m8")
@@ -95,10 +140,11 @@ position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_6kvnh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(0.236169, 0.179129)
 texture = ExtResource("3_lmtlq")
-hframes = 3
-vframes = 3
+offset = Vector2(0.360923, -1.53773)
+hframes = 5
+vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -106,7 +152,7 @@ libraries = {
 }
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
-script = ExtResource("2_1dxpt")
+script = ExtResource("3_yrhk6")
 init_state = NodePath("GooIdle")
 
 [node name="GooIdle" type="Node" parent="State Machine"]
@@ -116,15 +162,19 @@ script = ExtResource("3_rwny8")
 script = ExtResource("5_cibto")
 jumpLandingAttack_Scene = ExtResource("2_x4cjh")
 
+[node name="GooDead" type="Node" parent="State Machine"]
+script = ExtResource("7_muw0d")
+
 [node name="GooJump" type="Node" parent="."]
 script = ExtResource("5_3wdhk")
 
 [node name="HealthBar" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("8_e13d4")
+script = SubResource("GDScript_fue5d")
 
 [node name="ProgressBar" type="ProgressBar" parent="HealthBar"]
 layout_mode = 0

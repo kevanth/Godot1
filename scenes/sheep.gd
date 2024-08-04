@@ -16,13 +16,12 @@ func _ready():
 	# Store the original color of the sprite
 	original_color = $Sprite2D.modulate
 	player = get_tree().get_nodes_in_group("player")[0]
-	
 
 func take_damage(damage):
 	var sprite = $Sprite2D
 	#sprite.modulate = Color(1, 1, 1, 0.5)  # Change to semi-transparent white
 	health -= damage
-	get_node("HealthBar").update_health(health, maxHealth)
+	#get_node("HealthBar").update_health(health, maxHealth)
 	$Sprite2D.modulate = Color(15,15,15,1)
 	await get_tree().create_timer(flicker_interval).timeout
 	$Sprite2D.modulate = Color(1,1,1,1)

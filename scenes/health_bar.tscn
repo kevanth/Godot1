@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://dulc5p06n7vmk"]
+
+[ext_resource type="Script" path="res://scripts/States/player/healthBar.gd" id="1_atrtf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yn3pp"]
+load_path = "res://.godot/imported/heart_full.png-089984d14aaf310dd53af5ee0ec221f1.ctex"
+
+[node name="HealthBar" type="Control"]
+custom_minimum_size = Vector2(2.08165e-12, 30)
+layout_mode = 3
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_atrtf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 30)
+layout_mode = 0
+offset_right = 8.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_yn3pp")
+expand_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_yn3pp")
+expand_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_yn3pp")
+expand_mode = 3

@@ -26,5 +26,9 @@ func physics_update(_delta : float):
 		character.body.move_and_slide()
 	else:
 		Transitioned.emit(self,"PlayerIdle")
+		
 	if Input.is_key_pressed(KEY_SPACE):
 		Transitioned.emit(self,"PlayerDash")
+	elif Input.is_key_pressed(KEY_Q):
+		Transitioned.emit(self,"PlayerAttack1")
+		

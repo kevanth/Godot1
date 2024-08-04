@@ -1,5 +1,4 @@
 extends Node
-class_name StateMachine
 
 @export var init_state : State
 
@@ -28,6 +27,10 @@ func _ready():
 			current_state = init_state.enter()
 
 func _process(delta):
+	#dead
+	if character.body.health<=0 and current_state.name.to_lower()!="goodead":
+		on_child_transition(current_state,"GooDead")
+		get_parent().get_node("GooJump").set_physics_process(false)
 	if current_state:
 		current_state.update(delta)
 	

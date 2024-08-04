@@ -16,7 +16,6 @@ func enter():
 	jump_component.jump_started.connect(_on_jump_started)
 	jump_component.jump_finished.connect(_on_jump_finished)
 	to_jump_timer = randf_range(0, 3)
-	original_color = character.body.get_node("Sprite2D").modulate
 	return self
 	
 func exit():
@@ -27,28 +26,18 @@ func physics_update(delta):
 	if near_player():
 		Transitioned.emit(self,"GooAttack")
 
-	if !jumping:
+	if !jumping and !charging:
 		character.animationPlayer.play("idle")
 	
 	if to_jump_timer < 0:
 		charging = true
-		character.animationPlayer.play("jump_transition")
-		# flicker logic for charging
-		flicker_timer -= delta
-		if flicker_timer <= 0:
-			flicker_timer = flicker_interval
-			var sprite = character.body.get_node("Sprite2D")
-			if sprite.modulate == original_color:
-				sprite.modulate = Color(1, 1, 1, 0.5)  # Change to white
-			else:
-				sprite.modulate = original_color  # Change back to original color
+		character.animationPlayer.play("jumpCharge")
 		charge_timer -= delta
 	elif jumping == false:
 		to_jump_timer -= delta
 		
 	if charge_timer < 0 :
 		var sprite = character.body.get_node("Sprite2D")
-		sprite.modulate = original_color
 		character.animationPlayer.play("jump")
 		jump()
 		charge_timer = 2
@@ -63,16 +52,16 @@ func near_player():
 	
 func _on_jump_started():
 	jumping = true
-	print("Jump started in idle state")
+	#print("Jump started in idle state")
 
 func _on_jump_finished():
-	print("Jump finished in idle state")
-	print(character.body.position)
+	#print("Jump finished in idle state")
+	#print(character.body.position)
 	jumping = false
 
 func jump():
 	var random_destination = generate_random_destination()
-	print(random_destination)
+	#print(random_destination)
 	jump_component.start_jump(random_destination, 1.5, 5)
 
 func generate_random_destination():

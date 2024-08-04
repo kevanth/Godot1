@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7xu55jku3xch"]
+[gd_scene load_steps=10 format=3 uid="uid://c7xu55jku3xch"]
 
-[ext_resource type="PackedScene" uid="uid://dipuoujg0a0xp" path="res://characters/player.tscn" id="1_qsl2g"]
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_3y50u"]
+[ext_resource type="PackedScene" uid="uid://dipuoujg0a0xp" path="res://scenes/player.tscn" id="1_qsl2g"]
 [ext_resource type="Texture2D" uid="uid://b8s3lkpq0jjtq" path="res://characters/tilesheet1.png" id="2_jru31"]
 [ext_resource type="PackedScene" uid="uid://bh6wy3rx600yw" path="res://scenes/goo.tscn" id="3_p7o7m"]
+[ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_3veis"]
+[ext_resource type="PackedScene" uid="uid://dulc5p06n7vmk" path="res://scenes/health_bar.tscn" id="6_1h8pa"]
+[ext_resource type="PackedScene" uid="uid://j022npyhylck" path="res://scenes/sheep.tscn" id="7_l50bq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8k7v4"]
 texture = ExtResource("2_jru31")
@@ -184,9 +188,15 @@ physics_layer_1/collision_mask = 3
 sources/3 = SubResource("TileSetAtlasSource_8k7v4")
 
 [node name="world" type="Node2D"]
+script = ExtResource("1_3y50u")
+goo = ExtResource("3_p7o7m")
 
 [node name="gund" parent="." instance=ExtResource("1_qsl2g")]
 position = Vector2(23, 43)
+
+[node name="Camera2D" type="Camera2D" parent="gund"]
+position = Vector2(-23, -43)
+script = ExtResource("4_3veis")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(48, 48)
@@ -199,6 +209,11 @@ layer_1/name = "1"
 layer_1/z_index = -4
 layer_1/tile_data = PackedInt32Array(3, 65539, 7, 4, 131075, 7, 5, 196611, 7, 65541, 196611, 8, 65539, 65539, 8, 65540, 131075, 8)
 
-[node name="goo" parent="." instance=ExtResource("3_p7o7m")]
-z_index = 5
-position = Vector2(73, 42)
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="UI" instance=ExtResource("6_1h8pa")]
+anchors_preset = 12
+offset_bottom = 0.0
+
+[node name="sheep" parent="." instance=ExtResource("7_l50bq")]
+position = Vector2(82, 68)
