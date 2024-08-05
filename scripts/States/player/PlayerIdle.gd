@@ -3,7 +3,7 @@ class_name PlayerIdle
 
 func enter():
 	character.body.velocity = Vector2.ZERO
-	character.animationStateMachine.travel("idle")
+	character.animationPlayer.play("idle")
 	return self
 
 func update(_delta : float) -> void:

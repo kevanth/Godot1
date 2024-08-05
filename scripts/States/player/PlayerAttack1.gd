@@ -10,7 +10,7 @@ var hitboxOffset = 11
 @export var shadowScene : PackedScene 
 
 func enter():
-	character.animationStateMachine.travel("attackCharge1")
+	character.animationPlayer.play("attackCharge1")
 	isCharging = true
 	currentChargingTime = 0
 	slideBackCD = 0.2
@@ -33,14 +33,14 @@ func physics_update(delta : float):
 		
 	#release charge
 	if !Input.is_key_pressed(KEY_Q) and isCharging and currentChargingTime>=minimumChargeTime:
-		character.animationStateMachine.travel("attack1")
-		if not character.animationTree.animation_finished.is_connected(_on_animation_fin):
-			character.animationTree.animation_finished.connect(_on_animation_fin)
+		character.animationPlayer.play("attack1")
+		if not character.animationPlayer.animation_finished.is_connected(_on_animation_fin):
+			character.animationPlayer.animation_finished.connect(_on_animation_fin)
 		character.body.velocity = -(Vector2(1,0) if character.sprite.flip_h else Vector2(-1,0))
 		if currentChargingTime >= chargeTimeFull:
 			character.body.velocity *= 2000
 			var shadowNode = shadowScene.instantiate()
-			shadowNode.global_position = character.body.global_position
+			shadowNode.global_position = character.body.animationPlayer
 			
 			var animationPlayer = shadowNode.get_node("AnimationPlayer")
 			if(animationPlayer): 

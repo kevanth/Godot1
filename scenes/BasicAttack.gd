@@ -5,13 +5,13 @@ var minimumChargeTime = 0.1
 var hitboxOffset = 11
 
 func enter():
-	character.animationStateMachine.travel("BasicAttack")
+	character.animationPlayer.play("BasicAttack")
 	return self
 	
 func physics_update(delta : float):
-	character.animationStateMachine.travel("attack1")
-	if not character.animationTree.animation_finished.is_connected(_on_animation_fin):
-		character.animationTree.animation_finished.connect(_on_animation_fin)
+	character.animationPlayer.play("attack1")
+	#if not character.animationTree.animation_finished.is_connected(_on_animation_fin):
+	#	character.animationTree.animation_finished.connect(_on_animation_fin)
 	character.body.velocity = -(Vector2(1,0) if character.sprite.flip_h else Vector2(-1,0))
 	character.body.move_and_slide()
 		

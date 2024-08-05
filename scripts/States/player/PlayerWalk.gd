@@ -4,7 +4,7 @@ class_name PlayerWalk
 @export var moveSpeed:int
 
 func enter():
-	character.animationStateMachine.travel("walk")
+	character.animationPlayer.play("walk")
 	return self
 
 func physics_update(_delta : float):

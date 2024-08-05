@@ -12,7 +12,7 @@ var dash_direction: Vector2 = Vector2.ZERO
 
 
 func enter():
-	character.animationStateMachine.travel("walk")
+	character.animationPlayer.play("walk")
 	character.body.isTargetable = false
 	
 	dashing = true
