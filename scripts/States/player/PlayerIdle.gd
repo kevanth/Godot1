@@ -11,3 +11,5 @@ func update(_delta : float) -> void:
 		Transitioned.emit(self,"PlayerWalk")
 	if Input.is_key_pressed(KEY_Q):
 		Transitioned.emit(self,"PlayerAttack1")
+	if Input.is_key_pressed(KEY_W):		
+		Transitioned.emit(self,"BasicAttack1")

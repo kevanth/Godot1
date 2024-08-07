@@ -35,7 +35,7 @@ func _physics_process(delta):
 	if current_state:
 		current_state.physics_update(delta)
 		
-func on_child_transition(state : State, new_state_name : String):
+func on_child_transition(state : State, new_state_name : String, params = null):
 	if state != current_state:
 		return
 		
@@ -49,6 +49,9 @@ func on_child_transition(state : State, new_state_name : String):
 		current_state.exit()
 	
 	if new_state:
-		current_state = new_state.enter()
+		if params:
+			current_state = new_state.enter(params)
+		else:
+			current_state = new_state.enter()
 		assert (current_state != null, "Error, new state enter() returning null")
 	

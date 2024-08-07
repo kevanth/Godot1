@@ -22,7 +22,9 @@ func physics_update(delta):
 		character.sprite.flip_h = true if direction.x < 0 else false
 	elif rollTime < 0:
 		Transitioned.emit(self,"Agroed")
+		$"../../CollisionShape2D".disconnect("body_entered", _on_body_entered)
 	else:
+		# Attack
 		if $"../../AnimationPlayer".get_current_animation() != "attack":
 				$"../../AnimationPlayer".play("attack")
 		 # Check for collisions
@@ -32,6 +34,14 @@ func physics_update(delta):
 		last_pos = character.body.global_position
 		character.body.move_and_slide()
 		rollTime -= delta
+		#check hit player
+		if !$"../../HitBox".is_connected("body_entered", _on_body_entered):
+			$"../../HitBox".connect("body_entered", _on_body_entered)
+
+func _on_body_entered(body):
+	if body.is_in_group("player"):
+		#print("Hit a player body: ", body.name)
+		body.take_damage(1)
 		
 
 func is_wall_collision(normal: Vector2) -> bool:

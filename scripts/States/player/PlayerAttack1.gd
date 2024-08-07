@@ -40,7 +40,7 @@ func physics_update(delta : float):
 		if currentChargingTime >= chargeTimeFull:
 			character.body.velocity *= 2000
 			var shadowNode = shadowScene.instantiate()
-			shadowNode.global_position = character.body.animationPlayer
+			shadowNode.global_position = character.body.global_position
 			
 			var animationPlayer = shadowNode.get_node("AnimationPlayer")
 			if(animationPlayer): 
@@ -62,6 +62,7 @@ func physics_update(delta : float):
 		else:
 			hitBoxNode.damage = 20
 			
+		hitBoxNode.hitvfxToggle = true
 		hitBoxNode.global_position = character.body.global_position + (Vector2(-hitboxOffset,0) if character.sprite.flip_h else Vector2(hitboxOffset,0))
 		
 		var animationPlayer = hitBoxNode.get_node("AnimationPlayer")

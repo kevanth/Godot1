@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dipuoujg0a0xp"]
+[gd_scene load_steps=24 format=3 uid="uid://dipuoujg0a0xp"]
 
 [ext_resource type="Script" path="res://scripts/States/player/player.gd" id="1_u01ny"]
 [ext_resource type="Script" path="res://scripts/States/State Machine.gd" id="2_ani1l"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/States/player/PlayerAttack1.gd" id="7_dkwhp"]
 [ext_resource type="PackedScene" uid="uid://r4iirevdiy4p" path="res://scenes/dash_vfx.tscn" id="8_x4a22"]
 [ext_resource type="Script" path="res://scenes/BasicAttack.gd" id="10_wecm6"]
+[ext_resource type="PackedScene" uid="uid://bhdibq2dt2an3" path="res://scenes/basicAttackHitbox.tscn" id="11_2ef0x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iugsi"]
 radius = 6.0
@@ -196,9 +197,10 @@ _data = {
 script = ExtResource("1_u01ny")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
 scale = Vector2(1.00202, 1)
 texture = ExtResource("2_rv3pn")
-offset = Vector2(-1.99597, -1)
+flip_h = true
 hframes = 8
 vframes = 6
 
@@ -212,7 +214,7 @@ libraries = {
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("2_ani1l")
-init_state = NodePath("PlayerIdle")
+init_state = NodePath("BasicAttack1")
 
 [node name="PlayerIdle" type="Node" parent="State Machine"]
 script = ExtResource("4_h0cpe")
@@ -233,6 +235,8 @@ script = ExtResource("7_dkwhp")
 shadowScene = ExtResource("8_x4a22")
 hitBox = ExtResource("2_iac3j")
 
-[node name="BasicAttack" type="Node" parent="State Machine"]
+[node name="BasicAttack1" type="Node" parent="State Machine"]
 script = ExtResource("10_wecm6")
-hitBox = ExtResource("2_iac3j")
+hitBox = ExtResource("11_2ef0x")
+
+[node name="Timer" type="Timer" parent="."]

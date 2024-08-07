@@ -11,7 +11,7 @@ func createHitbox(damage:int, animationName:String, hitboxOffset:int):
 	
 	var animationPlayer = hitBoxNode.get_node("AnimationPlayer")
 	if(animationPlayer): 
-		animationPlayer.play("BasicAttack")
+		animationPlayer.play(animationName)
 		hitBoxNode.scale.x = -hitBoxNode.scale.x if character.sprite.flip_h else hitBoxNode.scale.x
 		# Connect the animation_finished signal to a function that deletes the shadow
 		if not animationPlayer.animation_finished.is_connected(_on_animation_fin_hitbox):
@@ -22,6 +22,6 @@ func createHitbox(damage:int, animationName:String, hitboxOffset:int):
 		
 		
 func _on_animation_fin_hitbox(animationName,body):
-	if animationName == "attack1hitbox":
+	if animationName == animationName:
 		body.queue_free()
 

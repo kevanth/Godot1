@@ -1,8 +1,9 @@
 extends Area2D
-
+class_name Hitbox
 var damage: int
 var fullCharge:int = false
 var vfx_offset = Vector2(15,0)
+var hitvfxToggle
 
 func _init():
 	collision_layer = 0
@@ -17,7 +18,8 @@ func _on_body_entered(body):
 	if body.is_in_group("enemies"):
 		print("Hit an enemy body: ", body.name)
 		body.take_damage(damage)
-		hitvfx(body)
+		if hitvfxToggle:
+			hitvfx(body)
 	
 func hitvfx(body):
 	if $Sprite2D.flip_h:

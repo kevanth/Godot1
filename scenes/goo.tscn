@@ -1,10 +1,10 @@
 [gd_scene load_steps=18 format=3 uid="uid://bh6wy3rx600yw"]
 
-[ext_resource type="Script" path="res://scripts/States/goo/goo.gd" id="1_pw4m8"]
+[ext_resource type="Script" path="res://scenes/goo.gd" id="1_xtqrw"]
 [ext_resource type="PackedScene" uid="uid://ct0uxno6iot2r" path="res://scenes/goo_jumpvfx.tscn" id="2_x4cjh"]
 [ext_resource type="Texture2D" uid="uid://ditqb5s6fe7du" path="res://characters/goo/goo.png" id="3_lmtlq"]
 [ext_resource type="Script" path="res://scripts/States/goo/GooIdle.gd" id="3_rwny8"]
-[ext_resource type="Script" path="res://scripts/States/Goo State Machine.gd" id="3_yrhk6"]
+[ext_resource type="Script" path="res://scripts/States/goo/Goo State Machine.gd" id="3_uyalq"]
 [ext_resource type="Script" path="res://scripts/States/goo/GooJump.gd" id="5_3wdhk"]
 [ext_resource type="Script" path="res://scripts/States/goo/GooAttack.gd" id="5_cibto"]
 [ext_resource type="Script" path="res://scripts/States/goo/GooDead.gd" id="7_muw0d"]
@@ -132,7 +132,7 @@ func update_health(current_health: int, max_health: int):
 position = Vector2(1.34755, 0.0499115)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_pw4m8")
+script = ExtResource("1_xtqrw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -152,7 +152,7 @@ libraries = {
 }
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
-script = ExtResource("3_yrhk6")
+script = ExtResource("3_uyalq")
 init_state = NodePath("GooIdle")
 
 [node name="GooIdle" type="Node" parent="State Machine"]

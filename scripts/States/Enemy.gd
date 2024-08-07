@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 
 var original_color = Color(1, 1, 1, 1)
 var flicker_interval = 1  # Interval for flickering and vibrating
