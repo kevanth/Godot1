@@ -8,6 +8,7 @@ load_path = "res://.godot/imported/heart_full.png-089984d14aaf310dd53af5ee0ec221
 [node name="HealthBar" type="Control"]
 custom_minimum_size = Vector2(2.08165e-12, 30)
 layout_mode = 3
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

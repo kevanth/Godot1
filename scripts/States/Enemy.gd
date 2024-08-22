@@ -23,10 +23,11 @@ func take_damage(damage):
 	var sprite = $Sprite2D
 	#sprite.modulate = Color(1, 1, 1, 0.5)  # Change to semi-transparent white
 	health -= damage
-	get_node("HealthBar").update_health(health, maxHealth)
+	get_node("Health").update_health(health, maxHealth)
 	$Sprite2D.modulate = Color(15,15,15,1)
 	await get_tree().create_timer(flicker_interval).timeout
 	$Sprite2D.modulate = Color(1,1,1,1)
+	$Health.frame
 	
 	# Start the flicker and vibration effect
 	#_start_flicker_and_vibrate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://j022npyhylck"]
+[gd_scene load_steps=18 format=3 uid="uid://j022npyhylck"]
 
 [ext_resource type="Script" path="res://scenes/sheep.gd" id="1_o5eg4"]
 [ext_resource type="Texture2D" uid="uid://biwluqb174vtk" path="res://characters/sheep.png" id="1_vn7ct"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://scripts/States/Sheep/Idle.gd" id="4_wathh"]
 [ext_resource type="Script" path="res://scripts/States/Sheep/Agroed.gd" id="5_lflfl"]
 [ext_resource type="Script" path="res://scripts/States/Sheep/Attack.gd" id="5_vvfcm"]
+[ext_resource type="Script" path="res://scenes/Dead.gd" id="7_wuiyg"]
+[ext_resource type="PackedScene" uid="uid://c6mjqmlvimwe8" path="res://scenes/enemy_health.tscn" id="8_voy8b"]
+[ext_resource type="Script" path="res://scenes/enemy_health.gd" id="9_u56h1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6m6ko"]
 radius = 9.0
@@ -122,6 +125,7 @@ collision_layer = 0
 script = ExtResource("1_o5eg4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_6m6ko")
 
@@ -152,6 +156,9 @@ walkSpeed = 40.0
 script = ExtResource("5_vvfcm")
 speed = 100.0
 
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("7_wuiyg")
+
 [node name="shadow" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("1_vn7ct")
@@ -162,5 +169,10 @@ frame = 15
 [node name="HitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+visible = false
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_6m6ko")
+
+[node name="Health" parent="." instance=ExtResource("8_voy8b")]
+position = Vector2(0, -8)
+script = ExtResource("9_u56h1")

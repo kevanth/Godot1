@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dipuoujg0a0xp"]
+[gd_scene load_steps=25 format=3 uid="uid://dipuoujg0a0xp"]
 
 [ext_resource type="Script" path="res://scripts/States/player/player.gd" id="1_u01ny"]
 [ext_resource type="Script" path="res://scripts/States/State Machine.gd" id="2_ani1l"]
@@ -15,6 +15,38 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iugsi"]
 radius = 6.0
 height = 16.0
+
+[sub_resource type="Animation" id="Animation_fbyis"]
+resource_name = "BasicAttack1"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [41, 42]
+}
+
+[sub_resource type="Animation" id="Animation_3vqm8"]
+resource_name = "BasicAttack2"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [43, 44]
+}
 
 [sub_resource type="Animation" id="Animation_mqhnr"]
 length = 0.001
@@ -147,9 +179,9 @@ tracks/0/keys = {
 "values": [1, 0]
 }
 
-[sub_resource type="Animation" id="Animation_fbyis"]
-resource_name = "BasicAttack1"
-length = 0.2
+[sub_resource type="Animation" id="Animation_deaki"]
+resource_name = "dash"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -157,26 +189,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [41, 42]
-}
-
-[sub_resource type="Animation" id="Animation_3vqm8"]
-resource_name = "BasicAttack2"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [43, 44]
+"values": [48]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wkg0u"]
@@ -186,6 +202,7 @@ _data = {
 "RESET": SubResource("Animation_mqhnr"),
 "attack1": SubResource("Animation_5x8gd"),
 "attackCharge1": SubResource("Animation_mk4hj"),
+"dash": SubResource("Animation_deaki"),
 "dash_vfx": SubResource("Animation_sme05"),
 "idle": SubResource("Animation_70oce"),
 "run": SubResource("Animation_08ggm"),
@@ -202,7 +219,7 @@ scale = Vector2(1.00202, 1)
 texture = ExtResource("2_rv3pn")
 flip_h = true
 hframes = 8
-vframes = 6
+vframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_iugsi")

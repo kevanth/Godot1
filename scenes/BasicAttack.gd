@@ -7,6 +7,7 @@ var hitboxOffset = 7
 var queuedNextAttack 
 var currSeq
 var timer 
+var speedMult
 
 func enter(sequence = "1"):
 	timer =  $"../../Timer"
@@ -14,14 +15,16 @@ func enter(sequence = "1"):
 	currSeq = sequence
 	character.animationPlayer.play("BasicAttack"+str(sequence))
 	var hitBoxNode = createHitbox(10,"hitbox",hitboxOffset)
+	hitBoxNode.get_node("AnimationPlayer").play("hitbox"+str(sequence))
 	hitBoxNode.hitvfxToggle = false
-	hitBoxNode.damage = 5
+	hitBoxNode.damage = 50
+	speedMult = 1
 	return self
 	
 func physics_update(delta : float):
 	if not character.animationPlayer.animation_finished.is_connected(_on_animation_fin):
 		character.animationPlayer.animation_finished.connect(_on_animation_fin)
-	character.body.velocity = -(Vector2(5,0) if character.sprite.flip_h else Vector2(-5,0))
+	character.body.velocity = -(Vector2(5,0) if character.sprite.flip_h else Vector2(-5,0)) * speedMult
 	character.body.move_and_slide()
 		
 func _input(event):
@@ -33,13 +36,14 @@ func _input(event):
 				queuedNextAttack = "PlayerAttack1"
 				
 func _on_animation_fin(animationName):
-	if queuedNextAttack:
-		if queuedNextAttack == "BasicAttack1":
-			Transitioned.emit(self,"BasicAttack1", "2" if currSeq == "1" else "1")
+	if queuedNextAttack and currSeq != "2":
+		if queuedNextAttack == "BasicAttack1" :
+			Transitioned.emit(self,"BasicAttack1", "2")
 		elif queuedNextAttack == "PlayerAttack1":
 			Transitioned.emit(self,"PlayerAttack1")			
 	elif str(animationName).begins_with("BasicAttack"):
 		timer.wait_time = endAnimationTime
 		timer.start()
+		speedMult = 0
 		await timer.timeout
 		Transitioned.emit(self,"PlayerIdle")
