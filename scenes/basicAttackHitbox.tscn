@@ -20,7 +20,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_a8eun"]
 resource_name = "hitbox1"
-length = 0.2
+length = 0.15
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,15 +29,16 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_og4rc"]
 resource_name = "hitbox2"
-length = 0.2
+length = 0.15
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,10 +46,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [1]
+"values": [3, 4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ochsj"]
@@ -62,11 +64,11 @@ script = ExtResource("1_wwdff")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bnko7")
-hframes = 2
+hframes = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(1, 0)
-polygon = PackedVector2Array(-10, -13, 5, -13, 11, -3, 15, 13, 8, 13, 2, -1)
+position = Vector2(2, -9)
+polygon = PackedVector2Array(-11, -10, 2, -9, 13, -3, 16, 5, 17, 18, 2, 18, 2, -1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

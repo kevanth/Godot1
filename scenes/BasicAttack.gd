@@ -15,7 +15,7 @@ func enter(sequence = "1"):
 	currSeq = sequence
 	character.animationPlayer.play("BasicAttack"+str(sequence))
 	var hitBoxNode = createHitbox(10,"hitbox",hitboxOffset)
-	hitBoxNode.get_node("AnimationPlayer").play("hitbox"+str(sequence))
+	hitBoxNode.get_node("AnimationPlayer").play("hitbox"+str(sequence),-1,2)
 	hitBoxNode.hitvfxToggle = false
 	hitBoxNode.damage = 50
 	speedMult = 1
@@ -40,7 +40,7 @@ func _on_animation_fin(animationName):
 		if queuedNextAttack == "BasicAttack1" :
 			Transitioned.emit(self,"BasicAttack1", "2")
 		elif queuedNextAttack == "PlayerAttack1":
-			Transitioned.emit(self,"PlayerAttack1")			
+			Transitioned.emit(self,"PlayerAttack1")
 	elif str(animationName).begins_with("BasicAttack"):
 		timer.wait_time = endAnimationTime
 		timer.start()
