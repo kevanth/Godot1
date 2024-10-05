@@ -54,4 +54,3 @@ func on_child_transition(state : State, new_state_name : String):
 	if new_state:
 		current_state = new_state.enter()
 		assert (current_state != null, "Error, new state enter() returning null")
-	

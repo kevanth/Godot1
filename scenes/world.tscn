@@ -214,8 +214,7 @@ layer_1/tile_data = PackedInt32Array(3, 65539, 7, 4, 131075, 7, 5, 196611, 7, 65
 [node name="HealthBar" parent="UI" instance=ExtResource("6_1h8pa")]
 offset_bottom = 0.0
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_p7o7m")]
-position = Vector2(31.3475, 26.0499)
-
 [node name="sheep" parent="." instance=ExtResource("7_l50bq")]
 position = Vector2(73, 42)
+
+[node name="goo" parent="." instance=ExtResource("3_p7o7m")]

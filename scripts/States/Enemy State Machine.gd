@@ -1,4 +1,5 @@
 extends StateMachine
+class_name EnemyStateMachine
 
 
 func _process(delta):
@@ -7,4 +8,3 @@ func _process(delta):
 		on_child_transition(current_state,"Dead")
 	if current_state:
 		current_state.update(delta)
-	
