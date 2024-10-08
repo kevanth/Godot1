@@ -60,3 +60,8 @@ func jump():
 func _on_animation_fin(body, animationName):
 	if body == "jumpfx":
 		animationName.queue_free()
+		
+func exit():
+	jump_component.jump_finished.disconnect(_on_jump_finished)
+		
+

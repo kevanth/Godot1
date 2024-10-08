@@ -21,7 +21,13 @@ func physics_update(delta):
 	if flyOff > 0:
 		character.body.velocity = direction * flyoffspeed
 		character.body.move_and_slide()
-		flyOff -= delta
+		# Check if character is on a wall
+		if character.body.is_on_wall():
+			# Stop flying off if hit a wall
+			flyOff = 0
+			_start_flicker_and_vibrate()
+		else:
+			flyOff -= delta
 	else :
 		_start_flicker_and_vibrate()
 	

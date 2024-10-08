@@ -218,3 +218,4 @@ offset_bottom = 0.0
 position = Vector2(73, 42)
 
 [node name="goo" parent="." instance=ExtResource("3_p7o7m")]
+position = Vector2(52, 36)
