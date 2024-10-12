@@ -1,7 +1,7 @@
 extends State
 class_name GooAttack
 
-var jump_component = null
+var jump_component:Node = null
 var to_jump_timer 
 var jumping = false
 var charging = false
@@ -62,6 +62,7 @@ func _on_animation_fin(body, animationName):
 		animationName.queue_free()
 		
 func exit():
+	jump_component.set_physics_process(false)
 	jump_component.jump_finished.disconnect(_on_jump_finished)
 		
 

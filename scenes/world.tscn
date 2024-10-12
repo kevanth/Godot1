@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7xu55jku3xch"]
+[gd_scene load_steps=11 format=3 uid="uid://c7xu55jku3xch"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_3y50u"]
 [ext_resource type="PackedScene" uid="uid://dipuoujg0a0xp" path="res://scenes/player.tscn" id="1_qsl2g"]
 [ext_resource type="Texture2D" uid="uid://b8s3lkpq0jjtq" path="res://characters/tilesheet1.png" id="2_jru31"]
 [ext_resource type="PackedScene" uid="uid://bh6wy3rx600yw" path="res://scenes/goo.tscn" id="3_p7o7m"]
+[ext_resource type="PackedScene" uid="uid://cmoxo3bnnd2kn" path="res://scenes/sinkhole.tscn" id="3_x5i40"]
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_3veis"]
 [ext_resource type="PackedScene" uid="uid://dulc5p06n7vmk" path="res://scenes/health_bar.tscn" id="6_1h8pa"]
 [ext_resource type="PackedScene" uid="uid://j022npyhylck" path="res://scenes/sheep.tscn" id="7_l50bq"]
@@ -190,6 +191,9 @@ sources/3 = SubResource("TileSetAtlasSource_8k7v4")
 [node name="world" type="Node2D"]
 script = ExtResource("1_3y50u")
 goo = ExtResource("3_p7o7m")
+
+[node name="sinkhole" parent="." instance=ExtResource("3_x5i40")]
+position = Vector2(130, 115)
 
 [node name="gund" parent="." instance=ExtResource("1_qsl2g")]
 position = Vector2(23, 43)

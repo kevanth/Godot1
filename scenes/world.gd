@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var goo : PackedScene
+@onready var sinkhole = $sinkhole
 
 func _process(delta):
 	var current_enemies = get_tree().get_nodes_in_group("enemies").size()
@@ -8,5 +9,9 @@ func _process(delta):
 		#var goo = goo.instantiate()
 		#goo.global_position = get_node("gund").global_position + Vector2(randf_range(-30,30),randf_range(-30,30))
 		#add_child(goo)
-#
+	if current_enemies == 0:
+		level_cleared()
 
+func level_cleared():
+	#sinkhole activate
+	sinkhole.activate()
