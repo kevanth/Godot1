@@ -1,9 +1,6 @@
 extends Node2D
 
-# Declare member variables here if needed
-@onready var character_body = $CharacterBody2D
-@onready var sprite = $CharacterBody2D/Sprite2D
-@onready var collision_shape = $CharacterBody2D/CollisionShape2D
+@onready var sprite = $Sprite2D
 
 func _ready():
 	# Set the sprite to invisible initially
