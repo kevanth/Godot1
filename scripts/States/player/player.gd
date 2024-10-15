@@ -26,6 +26,3 @@ func take_damage(damage: int):
 		await get_tree().create_timer(flicker_interval).timeout
 		$Sprite2D.modulate = Color(1,1,1,1)
 		isTargetable = true
-		
-		
-		

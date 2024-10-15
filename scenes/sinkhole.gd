@@ -5,10 +5,16 @@ extends Node2D
 func _ready():
 	# Set the sprite to invisible initially
 	sprite.visible = false
-	# You can also set up any initial settings for the node here if needed
-	print("Sprite is initially invisible")
 
 # Function to activate the sprite
 func activate():
 	sprite.visible = true
-	print("Sprite is now visible")
+	self.connect("body_entered",_on_body_entered)
+
+
+func _on_body_entered(body):
+	if body.is_in_group("player"):
+		#print("Hit a player body: ", body.name)
+		print("CLEAR")
+	
+
