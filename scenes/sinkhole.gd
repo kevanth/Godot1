@@ -14,7 +14,7 @@ func activate():
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
-		#print("Hit a player body: ", body.name)
-		print("CLEAR")
+		get_parent().next_level()
+		
 	
 

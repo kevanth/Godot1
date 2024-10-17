@@ -1,16 +1,16 @@
 [gd_scene load_steps=11 format=3 uid="uid://c7xu55jku3xch"]
 
-[ext_resource type="Script" path="res://scenes/world.gd" id="1_3y50u"]
-[ext_resource type="PackedScene" uid="uid://dipuoujg0a0xp" path="res://scenes/player.tscn" id="1_qsl2g"]
-[ext_resource type="Texture2D" uid="uid://b8s3lkpq0jjtq" path="res://characters/tilesheet1.png" id="2_jru31"]
-[ext_resource type="PackedScene" uid="uid://bh6wy3rx600yw" path="res://scenes/goo.tscn" id="3_p7o7m"]
-[ext_resource type="PackedScene" uid="uid://cmoxo3bnnd2kn" path="res://scenes/sinkhole.tscn" id="3_x5i40"]
-[ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_3veis"]
-[ext_resource type="PackedScene" uid="uid://dulc5p06n7vmk" path="res://scenes/health_bar.tscn" id="6_1h8pa"]
-[ext_resource type="PackedScene" uid="uid://j022npyhylck" path="res://scenes/sheep.tscn" id="7_l50bq"]
+[ext_resource type="Script" path="res://scenes/room.gd" id="1_eukh0"]
+[ext_resource type="PackedScene" uid="uid://bh6wy3rx600yw" path="res://scenes/goo.tscn" id="2_mfto7"]
+[ext_resource type="PackedScene" uid="uid://cmoxo3bnnd2kn" path="res://scenes/sinkhole.tscn" id="3_8aof3"]
+[ext_resource type="PackedScene" uid="uid://dipuoujg0a0xp" path="res://scenes/player.tscn" id="4_21sd7"]
+[ext_resource type="Script" path="res://scenes/Camera2D.gd" id="5_0tiwb"]
+[ext_resource type="Texture2D" uid="uid://b8s3lkpq0jjtq" path="res://characters/tilesheet1.png" id="6_gqppy"]
+[ext_resource type="PackedScene" uid="uid://dulc5p06n7vmk" path="res://scenes/health_bar.tscn" id="7_m4fpa"]
+[ext_resource type="PackedScene" uid="uid://j022npyhylck" path="res://scenes/sheep.tscn" id="8_llefl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8k7v4"]
-texture = ExtResource("2_jru31")
+texture = ExtResource("6_gqppy")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -188,19 +188,19 @@ physics_layer_1/collision_layer = 19
 physics_layer_1/collision_mask = 3
 sources/3 = SubResource("TileSetAtlasSource_8k7v4")
 
-[node name="world" type="Node2D"]
-script = ExtResource("1_3y50u")
-goo = ExtResource("3_p7o7m")
+[node name="room_1" type="Node2D"]
+script = ExtResource("1_eukh0")
+goo = ExtResource("2_mfto7")
 
-[node name="sinkhole" parent="." instance=ExtResource("3_x5i40")]
+[node name="sinkhole" parent="." instance=ExtResource("3_8aof3")]
 position = Vector2(130, 115)
 
-[node name="gund" parent="." instance=ExtResource("1_qsl2g")]
+[node name="gund" parent="." instance=ExtResource("4_21sd7")]
 position = Vector2(23, 43)
 
 [node name="Camera2D" type="Camera2D" parent="gund"]
 position = Vector2(-23, -43)
-script = ExtResource("4_3veis")
+script = ExtResource("5_0tiwb")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(48, 48)
@@ -215,11 +215,11 @@ layer_1/tile_data = PackedInt32Array(3, 65539, 7, 4, 131075, 7, 5, 196611, 7, 65
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" parent="UI" instance=ExtResource("6_1h8pa")]
+[node name="HealthBar" parent="UI" instance=ExtResource("7_m4fpa")]
 offset_bottom = 0.0
 
-[node name="sheep" parent="." instance=ExtResource("7_l50bq")]
+[node name="sheep" parent="." instance=ExtResource("8_llefl")]
 position = Vector2(73, 42)
 
-[node name="goo" parent="." instance=ExtResource("3_p7o7m")]
+[node name="goo" parent="." instance=ExtResource("2_mfto7")]
 position = Vector2(52, 36)

@@ -10,10 +10,13 @@ func _process(delta):
 		#var goo = goo.instantiate()
 		#goo.global_position = get_node("gund").global_position + Vector2(randf_range(-30,30),randf_range(-30,30))
 		#add_child(goo)
-	if current_enemies == 0:
+	if current_enemies == 0 and !sinkhole.sprite.visible:
 		level_cleared()
 	
 	
 func level_cleared():
 	#sinkhole activate
 	sinkhole.activate()
+
+func next_level():
+	print("NEXT LVL")
