@@ -15,8 +15,9 @@ func _process(delta):
 	
 	
 func level_cleared():
-	#sinkhole activate
+	#sinkhole activate 
 	sinkhole.activate()
 
 func next_level():
 	print("NEXT LVL")
+	GameController.reset_current_scene("res://scenes/room_1.tscn")
