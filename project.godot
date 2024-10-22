@@ -17,7 +17,8 @@ config/icon="res://art/icon.svg"
 
 [autoload]
 
-GameController="*res://scripts/gameController.gd"
+GameController="*res://scripts/GameController.gd"
+Global="*res://scripts/Global.gd"
 
 [display]
 

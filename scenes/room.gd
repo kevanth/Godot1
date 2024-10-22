@@ -4,6 +4,11 @@ extends Node2D
 @onready var sinkhole = $sinkhole
 @onready var player = $gund
 
+func _ready():
+	if Global.player_instance == null:
+		Global.set_player_instance(player)
+	print("Ready sene")
+
 func _process(delta):
 	var current_enemies = get_tree().get_nodes_in_group("enemies").size()
 	#if current_enemies < 2	:
@@ -20,4 +25,5 @@ func level_cleared():
 
 func next_level():
 	print("NEXT LVL")
-	GameController.reset_current_scene("res://scenes/room_1.tscn")
+	GameController.change_scene("res://scenes/room_2.tscn")
+	#GameController.reset_current_scene("res://scenes/room_1.tscn")
