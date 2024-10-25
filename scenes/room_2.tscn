@@ -191,10 +191,10 @@ script = ExtResource("1_ovp2a")
 goo = ExtResource("2_toh6f")
 
 [node name="sinkhole" parent="." instance=ExtResource("3_2jc44")]
-position = Vector2(130, 115)
+position = Vector2(33, 117)
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(48, 48)
+position = Vector2(47, 47)
 tile_set = SubResource("TileSet_l0fmn")
 format = 2
 layer_0/name = "0"
@@ -210,6 +210,7 @@ layer_1/tile_data = PackedInt32Array(3, 65539, 7, 4, 131075, 7, 5, 196611, 7, 65
 offset_bottom = 0.0
 
 [node name="sheep" parent="." instance=ExtResource("6_5xbh0")]
+visible = true
 position = Vector2(83, 84)
 
 [node name="goo" parent="." instance=ExtResource("2_toh6f")]

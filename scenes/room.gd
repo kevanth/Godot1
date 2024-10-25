@@ -2,19 +2,15 @@ extends Node2D
 
 @export var goo : PackedScene
 @onready var sinkhole = $sinkhole
-@onready var player = $gund
+@onready var player = $player
 
 func _ready():
 	if Global.player_instance == null:
 		Global.set_player_instance(player)
-	print("Ready sene")
+	print("Ready scene")
 
 func _process(delta):
 	var current_enemies = get_tree().get_nodes_in_group("enemies").size()
-	#if current_enemies < 2	:
-		#var goo = goo.instantiate()
-		#goo.global_position = get_node("gund").global_position + Vector2(randf_range(-30,30),randf_range(-30,30))
-		#add_child(goo)
 	if current_enemies == 0 and !sinkhole.sprite.visible:
 		level_cleared()
 	

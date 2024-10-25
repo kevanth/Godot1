@@ -140,6 +140,7 @@ _data = {
 }
 
 [node name="sheep" type="CharacterBody2D"]
+visible = false
 collision_layer = 0
 script = ExtResource("1_o5eg4")
 

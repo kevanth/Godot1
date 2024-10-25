@@ -10,6 +10,8 @@ var character: Character
 
 func _ready():
 	
+	print(is_physics_processing())
+	
 	character = Character.new(
 			get_parent(),
 			get_parent().get_node_or_null("Sprite2D"),
@@ -26,6 +28,8 @@ func _ready():
 			
 	if init_state:
 			current_state = init_state.enter()
+	
+	print(is_physics_processing())
 
 func _process(delta):
 	if current_state:

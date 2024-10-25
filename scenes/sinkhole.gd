@@ -19,6 +19,7 @@ func activate():
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
+		self.disconnect("body_entered",_on_body_entered)
 		get_parent().next_level()
 		
 	

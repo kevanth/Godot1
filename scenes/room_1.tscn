@@ -195,10 +195,10 @@ goo = ExtResource("2_mfto7")
 [node name="sinkhole" parent="." instance=ExtResource("3_8aof3")]
 position = Vector2(130, 115)
 
-[node name="gund" parent="." instance=ExtResource("4_21sd7")]
+[node name="player" parent="." instance=ExtResource("4_21sd7")]
 position = Vector2(23, 43)
 
-[node name="Camera2D" type="Camera2D" parent="gund"]
+[node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(-23, -43)
 script = ExtResource("5_0tiwb")
 
@@ -219,7 +219,8 @@ layer_1/tile_data = PackedInt32Array(3, 65539, 7, 4, 131075, 7, 5, 196611, 7, 65
 offset_bottom = 0.0
 
 [node name="sheep" parent="." instance=ExtResource("8_llefl")]
+visible = true
 position = Vector2(73, 42)
 
 [node name="goo" parent="." instance=ExtResource("2_mfto7")]
-position = Vector2(52, 36)
+position = Vector2(45, 33)

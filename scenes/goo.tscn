@@ -145,18 +145,18 @@ libraries = {
 "": SubResource("AnimationLibrary_iup3o")
 }
 
-[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("3_fqy2d")
 init_state = NodePath("GooIdle")
 
-[node name="GooIdle" type="Node" parent="State Machine"]
+[node name="GooIdle" type="Node" parent="StateMachine"]
 script = ExtResource("3_rwny8")
 
-[node name="GooAttack" type="Node" parent="State Machine"]
+[node name="GooAttack" type="Node" parent="StateMachine"]
 script = ExtResource("5_cibto")
 jumpLandingAttack_Scene = ExtResource("2_x4cjh")
 
-[node name="Dead" type="Node" parent="State Machine"]
+[node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("7_bjg3j")
 
 [node name="GooJump" type="Node" parent="."]

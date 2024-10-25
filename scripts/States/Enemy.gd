@@ -5,6 +5,7 @@ var original_color = Color(1, 1, 1, 1)
 var flicker_interval = 1  # Interval for flickering and vibrating
 var vibration_amount = 1.0  # Amount of vibration in pixels
 var player 
+@onready var state_machine = $"StateMachine"
 @export var health : int = 100
 @export var maxHealth : int = 100
 
@@ -16,8 +17,14 @@ func _init():
 func _ready():
 	# Store the original color of the sprite
 	original_color = $Sprite2D.modulate
-	player = get_tree().get_nodes_in_group("player")[0]
 	
+func _process(delta: float) -> void:
+	player = Global.player_instance
+	if player:
+		# Proceed with your setup using the player instance
+		set_process(false)
+	else:
+		print("Player instance not yet set, waiting...")
 
 func take_damage(damage):
 	var sprite = $Sprite2D
