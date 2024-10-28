@@ -9,7 +9,6 @@ var isTargetable = true
 
 func _ready():
 	add_to_group("player") 
-	#get_parent().get_node("HealthBar").update_health(health)
 
 func take_damage(damage: int):
 	if(isTargetable):

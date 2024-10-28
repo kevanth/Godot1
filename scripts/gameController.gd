@@ -24,6 +24,7 @@ func change_scene(scene_path: String) -> void:
 		current_scene = instance  # Set the new scene as the current one
 		print("Scene successfully changed to: ", current_scene)
 		_add_player_to_new_scene(player)
+		current_scene.get_node("UI").get_node("HealthBar").update_health(player.health)
 	else:
 		print("Failed to load scene: ", scene_path)
 
