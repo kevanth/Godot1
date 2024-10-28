@@ -10,6 +10,7 @@ var flyOff = 0.2
 var flyoffspeed = 80
 
 func enter():
+	self.get_parent().get_parent().remove_from_group("enemies")
 	character.animationPlayer.play("dead")
 	# Calculate the direction vector from player to the object
 	direction = character.body.global_position - character.body.player.global_position
