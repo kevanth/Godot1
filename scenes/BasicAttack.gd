@@ -9,6 +9,7 @@ var currSeq
 var timer 
 var speedMult
 
+
 func enter(sequence = "1"):
 	timer =  $"../../Timer"
 	queuedNextAttack = null
@@ -17,7 +18,7 @@ func enter(sequence = "1"):
 	var hitBoxNode = createHitbox(10,"hitbox",hitboxOffset)
 	hitBoxNode.get_node("AnimationPlayer").play("hitbox"+str(sequence),-1,2)
 	hitBoxNode.hitvfxToggle = false
-	hitBoxNode.damage = 50
+	hitBoxNode.damage = attackDamage * character.body.damageMultiplier
 	speedMult = 1
 	return self
 	

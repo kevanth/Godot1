@@ -5,6 +5,7 @@ var flicker_interval = 1  # Interval for flickering and vibrating
 var vibration_amount = 1.0  # Amount of vibration in pixels
 @export var health : int = 3
 @export var maxHealth : int = 3 
+@export var damageMultiplier : int = 2
 var isTargetable = true
 
 func _ready():

@@ -7,6 +7,7 @@ var currentChargingTime
 var afterAttackWaitTime = 0.2
 var minimumChargeTime = 0.1
 var hitboxOffset = 11
+
 @export var shadowScene : PackedScene 
 
 func enter():
@@ -57,10 +58,10 @@ func physics_update(delta : float):
 		
 		var hitBoxNode = hitBox.instantiate()
 		if currentChargingTime >= chargeTimeFull:
-			hitBoxNode.damage = 60
+			hitBoxNode.damage = attackDamage * character.body.damageMultiplier * 1.5
 			hitBoxNode.fullCharge = true
 		else:
-			hitBoxNode.damage = 20
+			hitBoxNode.damage = attackDamage * character.body.damageMultiplier
 			
 		hitBoxNode.hitvfxToggle = true
 		hitBoxNode.global_position = character.body.global_position + (Vector2(-hitboxOffset,0) if character.sprite.flip_h else Vector2(hitboxOffset,0))
