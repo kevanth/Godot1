@@ -22,4 +22,3 @@ func level_cleared():
 func next_level():
 	print("NEXT LVL")
 	GameController.change_scene("res://scenes/room_2.tscn")
-	#GameController.reset_current_scene("res://scenes/room_1.tscn")

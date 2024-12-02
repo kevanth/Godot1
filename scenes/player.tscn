@@ -250,7 +250,7 @@ shadowScene = ExtResource("8_x4a22")
 [node name="PlayerAttack1" type="Node" parent="State Machine"]
 script = ExtResource("7_dkwhp")
 shadowScene = ExtResource("8_x4a22")
-attackDamage = 20
+attackDamage = 40
 hitBox = ExtResource("2_iac3j")
 
 [node name="BasicAttack1" type="Node" parent="State Machine"]

@@ -10,6 +10,7 @@ var isTargetable = true
 
 func _ready():
 	add_to_group("player") 
+	Global.set_player_instance(self)
 
 func take_damage(damage: int):
 	if(isTargetable):

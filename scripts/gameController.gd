@@ -2,19 +2,18 @@
 extends Node
 
 var current_scene: Node = null
-var player = null
 
 func change_scene(scene_path: String) -> void:
-	# Remove the player from the current scene if it's still in the tree
-	player = Global.player_instance
+	'''
+	If current scene is empty set current scene to the one the tree is pointing towards (Active)
+	Remove player from active scene
+	Load new scene and add to tree, as well as update the health bar
+	'''
 	if !current_scene:
 		current_scene = get_tree().current_scene #If first scene
 	
-	if player and player.get_parent():
-		print(player)
-		print(player.get_parent())
-		current_scene.remove_child(player)
-		print(player.get_parent())
+	if Global.player_instance and Global.player_instance.get_parent():
+		current_scene.remove_child(Global.player_instance)
 	
 	var new_scene = load(scene_path)
 	if new_scene:
@@ -23,8 +22,8 @@ func change_scene(scene_path: String) -> void:
 		get_tree().root.add_child(instance)
 		current_scene = instance  # Set the new scene as the current one
 		print("Scene successfully changed to: ", current_scene)
-		_add_player_to_new_scene(player)
-		current_scene.get_node("UI").get_node("HealthBar").update_health(player.health)
+		_add_player_to_new_scene(Global.player_instance)
+		#current_scene.get_node("UI").get_node("HealthBar").update_health(Global.player_instance.health)
 	else:
 		print("Failed to load scene: ", scene_path)
 
