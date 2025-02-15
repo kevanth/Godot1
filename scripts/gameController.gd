@@ -2,6 +2,7 @@
 extends Node
 
 var current_scene: Node = null
+var current_lvl: int = 0
 
 func change_scene(scene_path: String) -> void:
 	'''
