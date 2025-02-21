@@ -3,7 +3,6 @@ extends Node
 signal jump_started
 signal jump_finished
 
-var jump_destination 
 var jump_duration   
 var jump_time 
 
@@ -15,11 +14,17 @@ func _ready():
 	set_physics_process(false)  # Disable processing initially
 
 func start_jump(destination, duration, newHeight):
-	jump_destination = destination
 	jump_duration = duration
 	jump_time = 0.0
 	start = get_parent().global_position
-	end = jump_destination
+	end = destination
+	
+	#if exceed max distance
+	if(start.distance_to(end) > get_parent().max_distance):
+		print("MAX")
+		var direction = (end - start).normalized()
+		end = start + direction * get_parent().max_distance
+		
 	height = newHeight # Adjust the jump height as needed
 	emit_signal("jump_started")
 	set_physics_process(true)  # Enable processing when the jump starts
