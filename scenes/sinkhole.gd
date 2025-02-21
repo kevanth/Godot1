@@ -23,4 +23,3 @@ func _on_body_entered(body):
 		get_parent().next_level()
 		
 	
-

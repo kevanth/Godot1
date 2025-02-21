@@ -65,4 +65,3 @@ func exit():
 	jump_component.set_physics_process(false)
 	jump_component.jump_finished.disconnect(_on_jump_finished)
 		
-

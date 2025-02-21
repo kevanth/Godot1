@@ -39,6 +39,3 @@ func near_player():
 	if int(player_pos.distance_to(character.body.position)) < 50:
 		return true
 	return false
-
-
-

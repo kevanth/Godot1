@@ -24,4 +24,3 @@ func createHitbox(damage:int, animationName:String, hitboxOffset:int):
 func _on_animation_fin_hitbox(animationName,body):
 	if animationName == animationName:
 		body.queue_free()
-
