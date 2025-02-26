@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://ds7dcg5qg62yr"]
 
-[ext_resource type="Texture2D" uid="uid://dcl14lygoiag6" path="res://characters/ArtForWalker-GaeaTutorial.png" id="1_ukp6w"]
+[ext_resource type="Texture2D" uid="uid://drs7dch6e763l" path="res://characters/ArtForWalker-GaeaTutorial.png" id="1_ukp6w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s3rpa"]
 texture = ExtResource("1_ukp6w")
@@ -136,6 +136,10 @@ texture = ExtResource("1_ukp6w")
 0:5/0 = 0
 0:5/0/terrain_set = 0
 0:5/0/terrain = 0
+1:5/0 = 0
+1:5/0/terrain_set = 0
+1:5/0/terrain = 0
+1:5/0/probability = 0.1
 
 [resource]
 physics_layer_0/collision_layer = 1

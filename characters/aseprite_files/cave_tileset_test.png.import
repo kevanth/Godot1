@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drs7dch6e763l"
-path="res://.godot/imported/ArtForWalker-GaeaTutorial.png-7afa1c6372aeaad9a020ca08436a69fd.ctex"
+uid="uid://dan0hy3t1yg0j"
+path="res://.godot/imported/cave_tileset_test.png-dc2b01d1e425aebdde32822962e3a26a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/ArtForWalker-GaeaTutorial.png"
-dest_files=["res://.godot/imported/ArtForWalker-GaeaTutorial.png-7afa1c6372aeaad9a020ca08436a69fd.ctex"]
+source_file="res://characters/aseprite_files/cave_tileset_test.png"
+dest_files=["res://.godot/imported/cave_tileset_test.png-dc2b01d1e425aebdde32822962e3a26a.ctex"]
 
 [params]
 
